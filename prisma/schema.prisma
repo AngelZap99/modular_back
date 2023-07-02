@@ -13,11 +13,12 @@ datasource db {
 // USERS' MODEL
 model Users {
   // USER DATA
-  user_id         Int      @id @default(autoincrement())
-  role            Role
-  email           String   @unique @db.Char(50)
-  password        String   @db.Char(20)
-  profile_image   String
+  user_id       Int    @id @default(autoincrement())
+  role          Role
+  email         String @unique @db.Char(50)
+  password      String @db.Char(20)
+  profile_image String
+
   // CONTROL FIELDS
   created_date    DateTime @default(now())
   created_user_id Int?
@@ -27,6 +28,7 @@ model Users {
 
 // USERS' ROLES
 enum Role {
+  INOPERATIVE
   USER
   ADMIN
 }
