@@ -6,7 +6,7 @@ const logConfig = {
 	colors: {
 		info: 'italic blue',
 		warn: 'italic bold yellow',
-		error: 'italic bold red',
+		error: 'italic bold red'
 	}
 };
 
