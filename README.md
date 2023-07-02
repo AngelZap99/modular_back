@@ -1,12 +1,18 @@
 # modular_back
 
 ## INDEX
-[Intructions](Instructions)
+- [Instructions](#instructions)
+  - [First time](#first-time)
+    - [Dependencies](#dependencies)
+    - [Docker](#docker)
+    - [Prisma](#prisma)
+  - [Execute project](#execute-project)
 
 
 ## Instructions
 
  * ### First time
+#### Dependencies
 1. The first step is to install all project dependencies with the command: (You have to be in the source path of the project)
 ~~~
   Yarn
@@ -28,7 +34,7 @@
 ---
 
  * ### Execute project
-#### Comands:
+***Comands:***
 ~~~
   yarn dev
 ~~~
