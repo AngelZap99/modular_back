@@ -1,24 +1,34 @@
 import 'dotenv/config';
-
 import express, { Express } from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
 
 import apiRouter from './apiRouter';
 
 import logger from './utils/logger';
 
-const PORT = process.env.PORT || 3001;
+class ServerClass {
+	private app: Express = express();
+	private port: number = Number(process.env.PORT) || 3001;
 
-function server() {
-	const app: Express = express();
+	constructor() {
+		// Middlewares
+		this.app.use(express.json());
+		this.app.use(express.urlencoded({ extended: true, parameterLimit: 100 }));
+		this.app.use(morgan('tiny'));
+		this.app.use(cors());
 
-	app.routes();
-	app.use(cors());
+		// Routes
+		this.app.use('/api', apiRouter);
 
-	app.use('/api', apiRouter);
+		//Run App
+		this.start();
+	}
 
-	app.listen(PORT, () => {
-		logger.info(`⚡⚡ This App is running in the PORT : ${PORT} ⚡⚡`);
-	});
+	public start() {
+		this.app.listen(this.port, () => {
+			logger.info(`⚡⚡ This App is running in the PORT : ${this.port} ⚡⚡`);
+		});
+	}
 }
-server();
+new ServerClass();

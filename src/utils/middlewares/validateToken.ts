@@ -14,9 +14,8 @@ export function validateToken(
 	next: NextFunction
 ): Response<any, Record<string, any>> | undefined {
 	const token = req.headers['authorization'];
-	if (!token) {
-		return res.status(401).send('No token provided');
-	}
+	if (!token) return res.status(401).send('No token provided');
+
 	const data = getDataFromToken(token);
 	if (data) {
 		req.body = { ...req.body, userToke: data };
