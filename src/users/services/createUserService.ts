@@ -1,15 +1,16 @@
 import { Response } from 'express';
-import { PrismaClient, Role } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
-import { IUser, IcreateUser } from '../interfaces';
+import { IUser, ICreateUser } from '../interfaces';
 import { handlerPrismaError } from '../../utils/HandlerPrimaErrors';
+import logger from '../../utils/logger';
 
 const prisma = new PrismaClient();
 
-async function createUserService(props: IcreateUser, res: Response) {
+async function createUserService(props: ICreateUser, res: Response) {
 	try {
 		const actualDate = new Date();
-		const { email, nickname, password } = props;
+		const { role, email, nickname, password } = props;
 
 		const createdUser: IUser = await prisma.users
 			.create({
@@ -17,7 +18,7 @@ async function createUserService(props: IcreateUser, res: Response) {
 					nickname,
 					email,
 					password,
-					role: Role.USER,
+					role: role,
 					profile_image: ' ',
 					created_date: actualDate,
 					created_user_id: 0,
@@ -30,8 +31,9 @@ async function createUserService(props: IcreateUser, res: Response) {
 		await prisma.$disconnect();
 		return createdUser;
 	} catch (err) {
+		logger.error(err);
 		const errPrisma = handlerPrismaError(err);
-		return errPrisma ? { errPrisma } : { Message: 'unknown error' };
+		res.status(errPrisma.status).json(errPrisma);
 	}
 }
 

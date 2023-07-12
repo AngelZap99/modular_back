@@ -4,15 +4,15 @@
 	"description": "backend project - UDG modular",
 	"main": "index.js",
 	"scripts": {
-		"start": "",
-		"dev": "nodemon ./src/server.ts",
-		"build": ""
+		"seed": "ts-node prisma/seed.ts",
+		"start": "ts-node src/server.ts",
+		"dev": "nodemon src/server.ts"
 	},
 	"repository": "https://github.com/AngelZap99/modular_back.git",
 	"author": "Angel Zapata Marquez <angel.zapata.developer@gmail.com>",
 	"license": "unlicense",
 	"dependencies": {
-		"@prisma/client": "^4.16.2",
+		"@prisma/client": "^5.0.0",
 		"bcrypt": "^5.1.0",
 		"cors": "^2.8.5",
 		"dotenv": "^16.3.1",
@@ -33,7 +33,7 @@
 		"@types/multer": "^1.4.7",
 		"@types/node": "^20.3.2",
 		"nodemon": "^2.0.22",
-		"prisma": "^4.16.2",
+		"prisma": "^5.0.0",
 		"ts-node": "^10.9.1",
 		"typescript": "^5.1.6"
 	}

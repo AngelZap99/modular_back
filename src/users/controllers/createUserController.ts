@@ -5,10 +5,10 @@ import { createUserService } from '../services/';
 import { createToken } from '../../utils/authToken';
 
 import { Role } from '@prisma/client';
-import { IcreateUser, IUser } from '../interfaces';
+import { ICreateUser, IUser } from '../interfaces';
 
 async function createUserController(req: Request, res: Response) {
-	const userData: IcreateUser = req.body;
+	const userData: ICreateUser = req.body;
 
 	// const createdUser =
 

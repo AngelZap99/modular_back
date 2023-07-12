@@ -17,7 +17,7 @@ model Users {
   role          Role
   nickname      String @db.Char(30)
   email         String @unique @db.Char(50)
-  password      String @db.Char(20)
+  password      String
   profile_image String
 
   // CONTROL FIELDS
