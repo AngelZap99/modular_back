@@ -15,9 +15,9 @@ model Users {
   // USER DATA
   user_id       Int    @id @default(autoincrement())
   role          Role
-  nickname      String @unique @db.Char(30)
+  nickname      String @db.Char(30)
   email         String @unique @db.Char(50)
-  password      String @db.Char(20)
+  password      String
   profile_image String
 
   // CONTROL FIELDS
@@ -30,6 +30,8 @@ model Users {
 // USERS' ROLES
 enum Role {
   INOPERATIVE
-  USER
+  READ
+  WRITE
+  OVERWRITE
   ADMIN
 }
