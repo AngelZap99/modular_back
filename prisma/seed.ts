@@ -18,6 +18,7 @@ async function main() {
 			updated_user_id: null
 		}
 	});
+	console.log(admin);
 }
 
 main()

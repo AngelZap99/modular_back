@@ -1,4 +1,4 @@
+import { authUserService } from './authUserService';
 import { createUserService } from './createUserService';
-import { findUserService } from './findUserService';
 
-export { createUserService, findUserService };
+export { createUserService, authUserService };
