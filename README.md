@@ -17,7 +17,7 @@
 ~~~
   Yarn
 ~~~
-2. Declare the environment variables, create a file called ```.env``` and use the example in the ```.env.example``` file
+2. Declare the environment variables, create a file called ```.env```, use the example in the ```.env.example``` file
 #### Docker  
 3. You must have docker desktop installed and running, To run the comand:
 ~~~
@@ -26,6 +26,7 @@
 #### Prisma
 4. When the docker container is running, the next step is to initialize the database and create all the tables, for this it is necessary to execute the next commands
 ~~~
+  npx prisma migrate dev
   npx prisma db push
   npx prisma db seed
 ~~~
