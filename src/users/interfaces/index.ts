@@ -1,5 +1,10 @@
 import { Role } from '@prisma/client';
 
+export interface IAuthUser {
+	email: string;
+	password: string;
+}
+
 export interface ICreateUser {
 	nickname: string;
 	role: Role;

@@ -6,7 +6,7 @@ function validateValidation(req: Request, res: Response, next: NextFunction) {
 		validationResult(req).throw();
 		return next();
 	} catch (err) {
-		res.status(403).send({
+		res.status(400).send({
 			...err!
 		});
 	}
