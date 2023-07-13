@@ -12,23 +12,20 @@ const prisma = new PrismaClient();
 async function authUserService(props: IAuthUser, res: Response) {
 	try {
 		const { email, password } = props;
-
 		const user: IUser | null = await prisma.users.findUnique({
 			where: {
 				email
 			}
 		});
-
 		if (!user) {
-			res.status(401).send('Invalid or incorrect credentials');
+			return null;
 		} else {
-			if (!compareCrypt(password, user.password)) {
-				res.status(401).send('Invalid or incorrect credentials');
+			if (!await compareCrypt(password, user.password)) {
+				return null;
 			}
+			await prisma.$disconnect();
+			return user;
 		}
-
-		await prisma.$disconnect();
-		return user;
 	} catch (err) {
 		logger.error(err);
 		const errPrisma = handlerPrismaError(err);

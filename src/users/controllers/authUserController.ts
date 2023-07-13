@@ -9,14 +9,16 @@ async function authUserController(req: Request, res: Response) {
 	const user = await authUserService(authData, res);
 
 	if (user) {
-		const { email, role, user_id } = user;
+		const { email, role, user_id, nickname } = user;
 		const token = createToken({ email, role, user_id });
 
 		res.status(200).json({
 			token,
 			user: {
 				...user,
-				password: null
+				password: undefined,
+				email: email.trim(),
+				nickname: nickname.trim()
 			}
 		});
 	} else {

@@ -1,7 +1,7 @@
 import { genSalt, hash } from 'bcrypt';
 
 async function createCrypt(password: string) {
-	const saltRounds = 16;
+	const saltRounds = 10;
 	return await genSalt(saltRounds)
 		.then((salt) => {
 			return hash(password, salt);
