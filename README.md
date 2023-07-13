@@ -28,7 +28,7 @@
 ~~~
   npx prisma migrate dev
   npx prisma db push
-  npx prisma db seed
+  yarn seed
 ~~~
 >  _The first one, creates the entire structure of the database and creates a schema called public which is where it will work, and the second one injects all the necessary information to start working in the database_ 
 
