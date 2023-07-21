@@ -5,6 +5,8 @@ import {
 	validateValidation
 } from '../../utils/middlewares';
 
+const rolesOptions = ['INOPERATIVE', 'READ', 'WRITE', 'OVERWRITE'];
+
 const validationDtoCreateUser = [
 	// Nickname
 	body('nickname')
@@ -19,6 +21,16 @@ const validationDtoCreateUser = [
 			max: 25
 		})
 		.withMessage(errMsg.strSize('5', '25')),
+	// Role
+	body('role')
+		.exists()
+		.withMessage(errMsg.notExists)
+		.notEmpty()
+		.withMessage(errMsg.notEmpty)
+		.isString()
+		.withMessage(errMsg.isString)
+		.isIn(rolesOptions)
+		.withMessage(errMsg.isNotIn(rolesOptions)),
 	// Email
 	body('email')
 		.exists()

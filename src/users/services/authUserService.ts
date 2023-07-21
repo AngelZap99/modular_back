@@ -3,8 +3,7 @@ import { PrismaClient } from '@prisma/client';
 
 import { compareCrypt } from '../../utils/encrypter';
 
-import logger from '../../utils/logger';
-import { handlerPrismaError } from '../../utils/HandlerPrismaErrors';
+import { handlerServicesErrors } from '../../utils/HandlerErrors';
 
 import { IUser, IAuthUser } from '../interfaces';
 
@@ -28,9 +27,7 @@ async function authUserService(props: IAuthUser, res: Response) {
 			return user;
 		}
 	} catch (err) {
-		logger.error(err);
-		const errPrisma = handlerPrismaError(err);
-		res.status(errPrisma.status).json(errPrisma);
+		handlerServicesErrors(err, res);
 	}
 }
 
