@@ -1,9 +1,10 @@
 import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
-import { IUser, ICreateUser } from '../interfaces';
-import { handlerPrismaError } from '../../utils/HandlerPrimaErrors';
 import logger from '../../utils/logger';
+import { handlerPrismaError } from '../../utils/HandlerPrismaErrors';
+
+import { IUser, ICreateUser } from '../interfaces';
 
 const prisma = new PrismaClient();
 

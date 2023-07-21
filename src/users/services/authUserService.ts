@@ -2,8 +2,9 @@ import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 import { compareCrypt } from '../../utils/encrypter';
-import { handlerPrismaError } from '../../utils/HandlerPrimaErrors';
+
 import logger from '../../utils/logger';
+import { handlerPrismaError } from '../../utils/HandlerPrismaErrors';
 
 import { IUser, IAuthUser } from '../interfaces';
 
