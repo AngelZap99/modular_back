@@ -2,8 +2,8 @@ import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 import { compareCrypt } from '../../utils/encrypter';
-import { handlerPrismaError } from '../../utils/HandlerPrimaErrors';
-import logger from '../../utils/logger';
+
+import { handlerServicesErrors } from '../../utils/HandlerErrors';
 
 import { IUser, IAuthUser } from '../interfaces';
 
@@ -20,16 +20,14 @@ async function authUserService(props: IAuthUser, res: Response) {
 		if (!user) {
 			return null;
 		} else {
-			if (!await compareCrypt(password, user.password)) {
+			if (!(await compareCrypt(password, user.password))) {
 				return null;
 			}
 			await prisma.$disconnect();
 			return user;
 		}
 	} catch (err) {
-		logger.error(err);
-		const errPrisma = handlerPrismaError(err);
-		res.status(errPrisma.status).json(errPrisma);
+		handlerServicesErrors(err, res);
 	}
 }
 

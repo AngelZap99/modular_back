@@ -1,9 +1,15 @@
-import { check } from 'express-validator';
-import { errMsg, validateValidation } from '../../utils/middlewares';
+import { body, header } from 'express-validator';
+import {
+	errMsg,
+	validateToken,
+	validateValidation
+} from '../../utils/middlewares';
 
-const validationCreateUser = [
+const rolesOptions = ['INOPERATIVE', 'READ', 'WRITE', 'OVERWRITE'];
+
+const validationDtoCreateUser = [
 	// Nickname
-	check('nickname')
+	body('nickname')
 		.exists()
 		.withMessage(errMsg.notExists)
 		.notEmpty()
@@ -15,8 +21,18 @@ const validationCreateUser = [
 			max: 25
 		})
 		.withMessage(errMsg.strSize('5', '25')),
+	// Role
+	body('role')
+		.exists()
+		.withMessage(errMsg.notExists)
+		.notEmpty()
+		.withMessage(errMsg.notEmpty)
+		.isString()
+		.withMessage(errMsg.isString)
+		.isIn(rolesOptions)
+		.withMessage(errMsg.isNotIn(rolesOptions)),
 	// Email
-	check('email')
+	body('email')
 		.exists()
 		.withMessage(errMsg.notExists)
 		.notEmpty()
@@ -30,7 +46,7 @@ const validationCreateUser = [
 		.isEmail()
 		.withMessage(errMsg.isEmail),
 	// Password
-	check('password')
+	body('password')
 		.exists()
 		.withMessage(errMsg.notExists)
 		.notEmpty()
@@ -45,7 +61,13 @@ const validationCreateUser = [
 			minSymbols: 0
 		})
 		.withMessage(errMsg.isStrongPass),
+	header('Authorization')
+		.exists()
+		.withMessage(errMsg.notExists)
+		.notEmpty()
+		.withMessage(errMsg.notEmpty),
+	validateToken,
 	validateValidation
 ];
 
-export { validationCreateUser };
+export { validationDtoCreateUser };

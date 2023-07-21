@@ -1,13 +1,17 @@
 import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
+import { handlerServicesErrors } from '../../utils/HandlerErrors';
+
 import { IUser, ICreateUser } from '../interfaces';
-import { handlerPrismaError } from '../../utils/HandlerPrimaErrors';
-import logger from '../../utils/logger';
 
 const prisma = new PrismaClient();
 
-async function createUserService(props: ICreateUser, res: Response) {
+async function createUserService(
+	props: ICreateUser,
+	adminId: number,
+	res: Response
+) {
 	try {
 		const actualDate = new Date();
 		const { role, email, nickname, password } = props;
@@ -18,12 +22,12 @@ async function createUserService(props: ICreateUser, res: Response) {
 					nickname,
 					email,
 					password,
-					role: role,
+					role,
 					profile_image: ' ',
 					created_date: actualDate,
-					created_user_id: 0,
+					created_user_id: adminId,
 					updated_date: actualDate,
-					updated_user_id: 0
+					updated_user_id: adminId
 				}
 			})
 			.then((res) => res);
@@ -31,9 +35,7 @@ async function createUserService(props: ICreateUser, res: Response) {
 		await prisma.$disconnect();
 		return createdUser;
 	} catch (err) {
-		logger.error(err);
-		const errPrisma = handlerPrismaError(err);
-		res.status(errPrisma.status).json(errPrisma);
+		handlerServicesErrors(err, res);
 	}
 }
 

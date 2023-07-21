@@ -1,4 +1,4 @@
-import { validationAuthUser } from './ValidationAuthUser';
-import { validationCreateUser } from './validationCreateUser';
+import { validationDtoAuthUser } from './ValidationAuthUser';
+import { validationDtoCreateUser } from './validationCreateUser';
 
-export { validationCreateUser, validationAuthUser };
+export { validationDtoCreateUser, validationDtoAuthUser };

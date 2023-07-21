@@ -6,20 +6,15 @@ import { getDataFromToken } from '../authToken';
  * @param {Request} req
  * @param {Response} res
  * @param {NextFunction} next
- * @returns {Response<any, Record<string, any>> | undefined} invoke next()
+ 
  */
-export function validateToken(
-	req: Request,
-	res: Response,
-	next: NextFunction
-): Response<any, Record<string, any>> | undefined {
+export function validateToken(req: Request, res: Response, next: NextFunction) {
 	const token = req.headers['authorization'];
-	if (!token) return res.status(401).send('No token provided');
-
-	const data = getDataFromToken(token);
-	if (data) {
-		req.body = { ...req.body, userToke: data };
-		next();
-	}
-	return res.status(401).send('Invalid, expired, or incorrect token');
+	if (token) {
+		const dataToken = getDataFromToken(token);
+		if (dataToken) {
+			req.body = { ...req.body, dataToken };
+			next();
+		} else res.status(401).send('Invalid, expired, or incorrect token');
+	} else res.status(401).send('No token provided');
 }

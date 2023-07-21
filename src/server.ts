@@ -1,11 +1,12 @@
 import 'dotenv/config';
 import express, { Express } from 'express';
+import { PrismaClient } from '@prisma/client';
 import cors from 'cors';
 import morgan from 'morgan';
 
-import apiRouter from './apiRouter';
-
 import logger from './utils/logger';
+
+import apiRouter from './apiRouter';
 
 class ServerClass {
 	private app: Express = express();
@@ -22,13 +23,25 @@ class ServerClass {
 		this.app.use('/api', apiRouter);
 
 		//Run App
-		this.start();
+		this.conectDB();
 	}
 
-	public start() {
+	private start() {
 		this.app.listen(this.port, () => {
 			logger.info(`⚡⚡ This App is running in the PORT : ${this.port} ⚡⚡`);
 		});
+	}
+
+	private async conectDB() {
+		try {
+			const prisma = new PrismaClient();
+			await prisma.$connect();
+			await prisma.$disconnect();
+			this.start();
+		} catch (error) {
+			logger.error('The connection to the database could not be established');
+			process.exit(0);
+		}
 	}
 }
 new ServerClass();

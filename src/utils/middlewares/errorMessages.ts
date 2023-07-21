@@ -8,7 +8,9 @@ const errMsg = {
 	isBoolen: 'This field must be a boolean',
 	isEmail: 'Must be a valid email, ...@host.domain',
 	isStrongPass:
-		'The password must have at least 8 characters, a capital letter and a number'
+		'The password must have at least 8 characters, a capital letter and a number',
+	isNotIn: (options: string[]) =>
+		`invalid value, the available options are: ${options.toString()}`
 };
 
 export { errMsg };

@@ -1,9 +1,9 @@
-import { check } from 'express-validator';
+import { body } from 'express-validator';
 import { errMsg, validateValidation } from '../../utils/middlewares';
 
-const validationAuthUser = [
+const validationDtoAuthUser = [
 	// Email
-	check('email')
+	body('email')
 		.exists()
 		.withMessage(errMsg.notExists)
 		.notEmpty()
@@ -17,7 +17,7 @@ const validationAuthUser = [
 		.isEmail()
 		.withMessage(errMsg.isEmail),
 	// Password
-	check('password')
+	body('password')
 		.exists()
 		.withMessage(errMsg.notExists)
 		.notEmpty()
@@ -35,4 +35,4 @@ const validationAuthUser = [
 	validateValidation
 ];
 
-export { validationAuthUser };
+export { validationDtoAuthUser };

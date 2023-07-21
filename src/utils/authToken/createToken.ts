@@ -16,6 +16,6 @@ interface ITokenProps {
 export function createToken(props: ITokenProps): string {
 	const { user_id, role, email } = props;
 	return jwt.sign({ user_id, role, email }, String(process.env.JWT_SECRET), {
-		expiresIn: 3600 * 48
+		expiresIn: 60 * 60 * 12
 	});
 }
