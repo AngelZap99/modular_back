@@ -9,9 +9,9 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
  */
 export function getDataFromToken(token: string): JwtPayload | string {
 	const tokenWithoutBearer = token.split(' ')[1];
-	const data = jwt.verify(tokenWithoutBearer, String(process.env.JWT_SECRET), {
-		maxAge: 68 * 68 * 48
-	});
-
-	return data;
+	try {
+		return jwt.verify(tokenWithoutBearer, String(process.env.JWT_SECRET));
+	} catch (error) {
+		return '';
+	}
 }

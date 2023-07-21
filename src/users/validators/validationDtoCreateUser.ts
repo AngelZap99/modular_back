@@ -1,5 +1,9 @@
-import { body } from 'express-validator';
-import { errMsg, validateValidation } from '../../utils/middlewares';
+import { body, header } from 'express-validator';
+import {
+	errMsg,
+	validateToken,
+	validateValidation
+} from '../../utils/middlewares';
 
 const validationDtoCreateUser = [
 	// Nickname
@@ -45,6 +49,12 @@ const validationDtoCreateUser = [
 			minSymbols: 0
 		})
 		.withMessage(errMsg.isStrongPass),
+	header('Authorization')
+		.exists()
+		.withMessage(errMsg.notExists)
+		.notEmpty()
+		.withMessage(errMsg.notEmpty),
+	validateToken,
 	validateValidation
 ];
 
