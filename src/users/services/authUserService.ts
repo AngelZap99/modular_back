@@ -20,7 +20,7 @@ async function authUserService(props: IAuthUser, res: Response) {
 		if (!user) {
 			return null;
 		} else {
-			if (!await compareCrypt(password, user.password)) {
+			if (!(await compareCrypt(password, user.password))) {
 				return null;
 			}
 			await prisma.$disconnect();

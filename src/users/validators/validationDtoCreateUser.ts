@@ -1,9 +1,9 @@
-import { check } from 'express-validator';
+import { body } from 'express-validator';
 import { errMsg, validateValidation } from '../../utils/middlewares';
 
-const validationCreateUser = [
+const validationDtoCreateUser = [
 	// Nickname
-	check('nickname')
+	body('nickname')
 		.exists()
 		.withMessage(errMsg.notExists)
 		.notEmpty()
@@ -16,7 +16,7 @@ const validationCreateUser = [
 		})
 		.withMessage(errMsg.strSize('5', '25')),
 	// Email
-	check('email')
+	body('email')
 		.exists()
 		.withMessage(errMsg.notExists)
 		.notEmpty()
@@ -30,7 +30,7 @@ const validationCreateUser = [
 		.isEmail()
 		.withMessage(errMsg.isEmail),
 	// Password
-	check('password')
+	body('password')
 		.exists()
 		.withMessage(errMsg.notExists)
 		.notEmpty()
@@ -48,4 +48,4 @@ const validationCreateUser = [
 	validateValidation
 ];
 
-export { validationCreateUser };
+export { validationDtoCreateUser };

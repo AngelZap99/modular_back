@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 
 import { authUserService } from '../services';
-import { IAuthUser } from '../interfaces';
+
 import { createToken } from '../../utils/authToken';
+
+import { IAuthUser } from '../interfaces';
 
 async function authUserController(req: Request, res: Response) {
 	const authData: IAuthUser = req.body;

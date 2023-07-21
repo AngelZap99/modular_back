@@ -2,16 +2,16 @@ import { Router } from 'express';
 import { routesConfig } from '../../utils/config';
 
 //VALIDATIONS
-import { validationAuthUser, validationCreateUser } from '../validators';
+import { validationDtoAuthUser, validationDtoCreateUser } from '../validators';
 
 // CONTROLLERS
 import { authUserController, createUserController } from '../controllers';
 
 const userRouter = Router(routesConfig);
 
-userRouter.post('/authUser', validationAuthUser, authUserController);
-// userRouter.get('/getUser', validationCreateUser, createUserController);
-// userRouter.post('/createUser', validationCreateUser, createUserController);
-// userRouter.patch('/updateUser', validationCreateUser, createUserController);
+// AUTH USER
+userRouter.post('/authUser', validationDtoAuthUser, authUserController);
+// CREATE USER (ONLY ADMIN)
+userRouter.post('/createUser', validationDtoCreateUser, createUserController);
 
 export { userRouter };

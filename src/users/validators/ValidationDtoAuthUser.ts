@@ -1,7 +1,7 @@
 import { check } from 'express-validator';
 import { errMsg, validateValidation } from '../../utils/middlewares';
 
-const validationAuthUser = [
+const validationDtoAuthUser = [
 	// Email
 	check('email')
 		.exists()
@@ -35,4 +35,4 @@ const validationAuthUser = [
 	validateValidation
 ];
 
-export { validationAuthUser };
+export { validationDtoAuthUser };
