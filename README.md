@@ -37,5 +37,5 @@
  * ### Execute project
 ***Comands:***
 ~~~
-  yarn dev
+  yarn start
 ~~~
