@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { routesConfig } from '../../utils/config';
 
 //VALIDATIONS
-import { validationDtoLogin } from '../middlewares';
+import { loginMiddleware } from '../middlewares';
 
 // CONTROLLERS
 import { loginController } from '../controllers';
@@ -10,6 +10,6 @@ import { loginController } from '../controllers';
 const authRouter = Router(routesConfig);
 
 // AUTH USER
-authRouter.get('/login', validationDtoLogin, loginController);
+authRouter.get('/login', loginMiddleware, loginController);
 
 export { authRouter };

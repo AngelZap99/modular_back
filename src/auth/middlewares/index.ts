@@ -1,3 +1,3 @@
-import { validationDtoLogin } from './validationDtoLogin';
+import { loginMiddleware } from './loginMiddleware';
 
-export { validationDtoLogin };
+export { loginMiddleware };
