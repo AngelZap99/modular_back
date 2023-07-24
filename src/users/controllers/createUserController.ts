@@ -3,11 +3,11 @@ import { Request, Response } from 'express';
 import { createUserService } from '../services/';
 import logger from '../../utils/logger';
 
-import { ICreateUser, IUser } from '../interfaces';
+import { ICreateUserDto, IUser } from '../interfaces';
 
 async function createUserController(req: Request, res: Response) {
 	const { dataToken } = req.body;
-	const userData: ICreateUser = req.body;
+	const userData: ICreateUserDto = req.body;
 
 	const createdUser: IUser | undefined = await createUserService(
 		userData,

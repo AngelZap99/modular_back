@@ -3,12 +3,12 @@ import { PrismaClient } from '@prisma/client';
 
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
 
-import { IUser, ICreateUser } from '../interfaces';
+import { IUser, ICreateUserDto } from '../interfaces';
 
 const prisma = new PrismaClient();
 
 async function createUserService(
-	props: ICreateUser,
+	props: ICreateUserDto,
 	adminId: number,
 	res: Response
 ) {

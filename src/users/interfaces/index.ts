@@ -1,25 +1,20 @@
 import { Role } from '@prisma/client';
 
-export interface IAuthUser {
-	email: string;
-	password: string;
-}
-
-export interface ICreateUser {
+export interface ICreateUserDto {
 	nickname: string;
 	role: Role;
 	email: string;
 	password: string;
 }
 
-export interface IUpdateUser {
+export interface IUpdateUserDto {
 	id: string;
 	role?: Role;
 	nickname?: string;
 	email?: string;
 	password?: string;
 	profile_image?: string;
-	updated_user_id: number | null;
+	updated_user_id: number;
 }
 
 export interface IUser {
