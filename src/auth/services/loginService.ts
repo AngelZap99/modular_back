@@ -1,15 +1,15 @@
 import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
+
 import { compareCrypt } from '../../utils/encrypter';
-
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
-
-import { IUser, IAuthUser } from '../interfaces';
+import { IAuthLoginDto } from "../interfaces";
+import { IUser } from '../../users/interfaces';
 
 const prisma = new PrismaClient();
 
-async function authUserService(props: IAuthUser, res: Response) {
+async function loginService(props: IAuthLoginDto, res: Response) {
 	try {
 		const { email, password } = props;
 		const user: IUser | null = await prisma.users.findUnique({
@@ -31,4 +31,4 @@ async function authUserService(props: IAuthUser, res: Response) {
 	}
 }
 
-export { authUserService };
+export { loginService };

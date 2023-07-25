@@ -1,4 +1,4 @@
-import { authUserController } from './authUserController';
 import { createUserController } from './createUserController';
+import { updateUserController } from "./updateUserController";
 
-export { createUserController, authUserController };
+export { createUserController, updateUserController };

@@ -1,14 +1,18 @@
 import { Request, Response } from 'express';
 
-import { authUserService } from '../services';
-
+import { loginService } from '../services';
+import { IAuthLoginDto } from '../interfaces';
 import { createToken } from '../../utils/authToken';
 
-import { IAuthUser } from '../interfaces';
+async function loginController(req: Request, res: Response) {
+	const { email, password } = req.query;
 
-async function authUserController(req: Request, res: Response) {
-	const authData: IAuthUser = req.body;
-	const user = await authUserService(authData, res);
+	const data: IAuthLoginDto = {
+		email: String(email),
+		password: String(password)
+	};
+	
+	const user = await loginService(data, res);
 
 	if (user) {
 		const { email, role, user_id, nickname } = user;
@@ -28,4 +32,4 @@ async function authUserController(req: Request, res: Response) {
 	}
 }
 
-export { authUserController };
+export { loginController };

@@ -2,16 +2,32 @@ import { Router } from 'express';
 import { routesConfig } from '../../utils/config';
 
 //VALIDATIONS
-import { validationDtoAuthUser, validationDtoCreateUser } from '../validators';
+import {
+	createUserMiddleware,
+	updateUserMiddleware
+	// disabledUserMiddleware
+} from '../middlewares';
 
 // CONTROLLERS
-import { authUserController, createUserController } from '../controllers';
+import {
+	createUserController,
+	updateUserController
+	// disabledUserController
+} from '../controllers';
 
 const userRouter = Router(routesConfig);
 
-// AUTH USER
-userRouter.post('/authUser', validationDtoAuthUser, authUserController);
 // CREATE USER (ONLY ADMIN)
-userRouter.post('/createUser', validationDtoCreateUser, createUserController);
+userRouter.post('/create', createUserMiddleware, createUserController);
+
+// CREATE USER (ADMIN | USER)
+userRouter.patch(
+	'/update/:user_id',
+	updateUserMiddleware,
+	updateUserController
+);
+
+// DISABLED USER (ADMIN)
+// userRouter.patch('/disabled', disabledUserMiddleware, disabledUserController);
 
 export { userRouter };
