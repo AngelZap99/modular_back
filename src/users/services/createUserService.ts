@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
 
 import { IUser, ICreateUserDto } from '../interfaces';
+import { getActualDate } from '../../utils/date';
 
 const prisma = new PrismaClient();
 
@@ -13,7 +14,7 @@ async function createUserService(
 	res: Response
 ) {
 	try {
-		const actualDate = new Date();
+		const date = getActualDate();
 		const { role, email, nickname, password } = props;
 
 		const createdUser: IUser = await prisma.users
@@ -24,9 +25,9 @@ async function createUserService(
 					password,
 					role,
 					profile_image: ' ',
-					created_date: actualDate,
+					created_date: date,
 					created_user_id: adminId,
-					updated_date: actualDate,
+					updated_date: date,
 					updated_user_id: adminId
 				}
 			})

@@ -11,6 +11,13 @@ function handlerPrismaError(e: any) {
 					meta: e.meta
 				};
 			}
+			case 'P2025': {
+				return {
+					message: 'Row was not found',
+					status: 404,
+					meta: e.meta
+				};
+			}
 			default: {
 				return {
 					message: 'An error has occurred in a field',

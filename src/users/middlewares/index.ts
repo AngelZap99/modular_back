@@ -1,3 +1,4 @@
-import { validationDtoCreateUser } from './validationCreateUser';
+import { createUserMiddleware } from './createUserMiddleware';
+import { updateUserMiddleware } from './updateUserMiddleware';
 
-export { validationDtoCreateUser };
+export { createUserMiddleware, updateUserMiddleware };

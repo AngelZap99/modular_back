@@ -7,10 +7,10 @@ import { ICreateUserDto, IUser } from '../interfaces';
 
 async function createUserController(req: Request, res: Response) {
 	const { dataToken } = req.body;
-	const userData: ICreateUserDto = req.body;
+	const data: ICreateUserDto = req.body;
 
 	const createdUser: IUser | undefined = await createUserService(
-		userData,
+		data,
 		dataToken.user_id,
 		res
 	);
