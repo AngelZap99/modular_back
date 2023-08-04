@@ -20,7 +20,7 @@ const userRouter = Router(routesConfig);
 // CREATE USER (ONLY ADMIN)
 userRouter.post('/create', createUserMiddleware, createUserController);
 
-// CREATE USER (ADMIN | USER)
+// UPDATE USER (ADMIN | USER)
 userRouter.patch(
 	'/update/:user_id',
 	updateUserMiddleware,

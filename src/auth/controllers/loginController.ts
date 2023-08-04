@@ -11,7 +11,7 @@ async function loginController(req: Request, res: Response) {
 		email: String(email),
 		password: String(password)
 	};
-	
+
 	const user = await loginService(data, res);
 
 	if (user) {
