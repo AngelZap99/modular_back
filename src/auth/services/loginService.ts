@@ -1,10 +1,9 @@
 import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
-
 import { compareCrypt } from '../../utils/encrypter';
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
-import { IAuthLoginDto } from "../interfaces";
+import { IAuthLoginDto } from '../interfaces';
 import { IUser } from '../../users/interfaces';
 
 const prisma = new PrismaClient();

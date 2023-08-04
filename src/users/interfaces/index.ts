@@ -12,7 +12,7 @@ export interface ICreateUserDto {
 export interface IUpdateUserDto {
 	nickname?: string;
 	email?: string;
-	password: string;
+	password?: string;
 	role?: Role;
 	profile_image?: string;
 }

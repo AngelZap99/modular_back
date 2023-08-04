@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { Response } from 'express';
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 function handlerPrismaError(e: any) {
 	if (e instanceof Prisma.PrismaClientKnownRequestError) {
 		switch (e.code) {
@@ -13,7 +14,7 @@ function handlerPrismaError(e: any) {
 			}
 			case 'P2025': {
 				return {
-					message: 'Row was not found',
+					message: 'This index was not found',
 					status: 404,
 					meta: e.meta
 				};
@@ -22,7 +23,7 @@ function handlerPrismaError(e: any) {
 				return {
 					message: 'An error has occurred in a field',
 					status: 400,
-					meta: e.meta
+					data: e
 				};
 			}
 		}
@@ -30,6 +31,7 @@ function handlerPrismaError(e: any) {
 	return null;
 }
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 function handlerServicesErrors(err: any, res: Response) {
 	const errPrisma = handlerPrismaError(err);
 	errPrisma ? console.error(errPrisma) : console.error(err);
