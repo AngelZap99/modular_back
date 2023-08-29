@@ -27,7 +27,7 @@
 4. When the docker container is running, the next step is to initialize the database and create all the tables, for this it is necessary to execute the next commands
 ~~~
   npx prisma migrate dev
-  npx prisma db push
+  npx prisma db pull
   yarn seed
 ~~~
 >  _The first one, creates the entire structure of the database and creates a schema called public which is where it will work, and the second one injects all the necessary information to start working in the database_ 
