@@ -1,4 +1,11 @@
+import { getAllUsersController } from './getAllUsersController';
+import { getOneUserController } from './getOneUserController';
 import { createUserController } from './createUserController';
 import { updateUserController } from './updateUserController';
 
-export { createUserController, updateUserController };
+export {
+	getOneUserController,
+	getAllUsersController,
+	createUserController,
+	updateUserController
+};
