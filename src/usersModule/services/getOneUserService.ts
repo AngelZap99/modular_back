@@ -7,10 +7,13 @@ import { IUser } from '../interfaces';
 
 const prisma = new PrismaClient();
 
-async function getOneUserService(filter: string | number, res: Response) {
+async function getOneUserService(filter: string, res: Response) {
 	try {
-		const condition =
-			typeof filter === 'string' ? { email: filter } : { user_id: filter };
+		const condition = isNaN(Number(filter))
+			? { email: filter }
+			: { user_id: Number(filter) };
+
+		console.log(condition);
 
 		const user: IUser | null = await prisma.users
 			.findUnique({ where: condition })

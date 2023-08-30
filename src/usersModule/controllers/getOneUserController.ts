@@ -3,12 +3,9 @@ import { IUser } from '../interfaces';
 import { getOneUserService } from '../services';
 
 async function getOneUserController(req: Request, res: Response) {
-	const { filter } = req.query;
+	const { filter } = req.params;
 
-	const user: IUser | null | undefined = await getOneUserService(
-		String(filter),
-		res
-	);
+	const user: IUser | null | undefined = await getOneUserService(filter, res);
 
 	if (user) {
 		const { email, nickname } = user;
@@ -18,6 +15,8 @@ async function getOneUserController(req: Request, res: Response) {
 			email: email.trim(),
 			nickname: nickname.trim()
 		});
+	} else {
+		res.status(404).send('User not found');
 	}
 }
 
