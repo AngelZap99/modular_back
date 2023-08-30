@@ -7,7 +7,7 @@ import swaggerUi from 'swagger-ui-express';
 
 import apiRouter from './apiRouter';
 import logger from './utils/logger';
-import swaggerConfig from './swagger/swaggerConfig';
+import swaggerConfig from '../swagger/swaggerConfig';
 
 const port: number = Number(process.env.PORT) || 3001;
 const app: Express = express();

@@ -2,7 +2,7 @@ import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
-import { IUpdateUserDto, IUser } from '../../users/interfaces';
+import { IUpdateUserDto, IUser } from '../interfaces';
 
 import { getActualDate } from '../../utils/date';
 

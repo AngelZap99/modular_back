@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import { compareCrypt } from '../../utils/encrypter';
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
 import { IAuthLoginDto } from '../interfaces';
-import { IUser } from '../../users/interfaces';
+import { IUser } from '../../usersModule/interfaces';
 
 const prisma = new PrismaClient();
 
