@@ -11,14 +11,21 @@ import {
 // CONTROLLERS
 import {
 	createUserController,
+	getAllUsersController,
+	getOneUserController,
 	updateUserController
-	// disabledUserController
 } from '../controllers';
 
 const userRouter = Router(routesConfig);
 
 // CREATE USER (ONLY ADMIN)
 userRouter.post('/create', createUserMiddleware, createUserController);
+
+// GET ONE USER BY ID OR EMAIL
+userRouter.get('/:filter', getOneUserController);
+
+// GET USERS
+userRouter.get('/', getAllUsersController);
 
 // UPDATE USER (ADMIN | USER)
 userRouter.patch(
