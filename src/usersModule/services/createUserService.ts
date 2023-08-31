@@ -21,7 +21,7 @@ async function createUserService(
 			.create({
 				data: {
 					nickname,
-					email,
+					email: email.toLocaleUpperCase(),
 					password,
 					role,
 					profile_image: ' ',
