@@ -12,17 +12,17 @@ async function getAllUsersController(req: Request, res: Response) {
 	);
 
 	if (users) {
-		res.status(200).json({
-			...users.map((user) => {
-				const { email, nickname } = user;
-				return {
-					...user,
-					password: undefined,
-					email: email.trim(),
-					nickname: nickname.trim()
-				};
-			})
+		const userList = users.map((user) => {
+			const { email, nickname } = user;
+			return {
+				...user,
+				password: undefined,
+				email: email.trim(),
+				nickname: nickname.trim()
+			};
 		});
+
+		res.status(200).json(userList);
 	}
 }
 
