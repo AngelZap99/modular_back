@@ -2,7 +2,7 @@ import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 import { Role } from '@prisma/client';
 
-interface ITokenProps {
+export interface ITokenProps {
 	user_id: number;
 	role: Role;
 	email: string;

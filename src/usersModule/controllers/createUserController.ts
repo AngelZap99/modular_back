@@ -19,7 +19,7 @@ async function createUserController(req: Request, res: Response) {
 		const { email, nickname } = createdUser;
 		logger.info('An user has been created');
 		res.status(200).json({
-			newUser: {
+			createdUser: {
 				...createdUser,
 				password: undefined,
 				email: email.trim(),

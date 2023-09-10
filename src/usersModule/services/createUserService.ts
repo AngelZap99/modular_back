@@ -2,9 +2,10 @@ import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
+import { createCrypt } from '../../utils/encrypter';
+import { getActualDate } from '../../utils/date';
 
 import { IUser, ICreateUserDto } from '../interfaces';
-import { getActualDate } from '../../utils/date';
 
 const prisma = new PrismaClient();
 
@@ -21,8 +22,8 @@ async function createUserService(
 			.create({
 				data: {
 					nickname,
-					email: email.toLocaleUpperCase(),
-					password,
+					email: email.toLowerCase(),
+					password: await createCrypt(password),
 					role,
 					profile_image: ' ',
 					created_date: date,
