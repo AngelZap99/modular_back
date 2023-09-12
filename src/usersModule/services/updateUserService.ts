@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 
 /* utils functions */
 import { createCrypt } from '../../utils/encrypter';
-import { ITokenProps } from '../../utils/authToken/createToken';
+import { ITokenProps } from '../../utils/authToken/';
 import { getActualDate } from '../../utils/date';
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
 
