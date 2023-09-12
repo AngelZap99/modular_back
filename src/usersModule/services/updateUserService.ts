@@ -1,17 +1,21 @@
 import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
-import { handlerServicesErrors } from '../../utils/HandlerErrors';
-import { IUpdateUserDto, IUser } from '../interfaces';
-
+/* utils functions */
+import { createCrypt } from '../../utils/encrypter';
+import { ITokenProps } from '../../utils/authToken/';
 import { getActualDate } from '../../utils/date';
+import { handlerServicesErrors } from '../../utils/HandlerErrors';
+
+/*interfaces */
+import { IUpdateUserDto, IUser } from '../interfaces';
 
 const prisma = new PrismaClient();
 
 async function updatedUserService(
 	props: IUpdateUserDto,
-	user_id: number,
-	updater_id: number,
+	idToUpdate: number,
+	tokenData: ITokenProps,
 	res: Response
 ) {
 	const date = getActualDate();
@@ -19,12 +23,14 @@ async function updatedUserService(
 	try {
 		const updatedUser: IUser = await prisma.users.update({
 			where: {
-				user_id: user_id
+				user_id: idToUpdate
 			},
 			data: {
 				...props,
+				email: props.email?.toLowerCase(),
+				password: props.password && (await createCrypt(props.password)),
 				updated_date: date,
-				updated_user_id: updater_id
+				updated_user_id: tokenData.user_id
 			}
 		});
 		return updatedUser;

@@ -1,11 +1,10 @@
 import { body, header } from 'express-validator';
 import {
 	errMsg,
+	rolesOptions,
 	validateToken,
 	validateValidation
 } from '../../utils/middlewares';
-
-const rolesOptions = ['INOPERATIVE', 'READ', 'WRITE', 'OVERWRITE'];
 
 // prettier-ignore
 const createUserMiddleware = [
@@ -45,6 +44,7 @@ const createUserMiddleware = [
 		.exists().withMessage(errMsg.notExists).bail()
 		.notEmpty().withMessage(errMsg.notEmpty).bail(),
 	validateToken,
+
 	validateValidation
 ];
 
