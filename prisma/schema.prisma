@@ -35,3 +35,58 @@ enum Role {
   OVERWRITE
   ADMIN
 }
+
+model Employee {
+  // EMPLOYEE DATA
+  employee_id     Int        @id @default(autoincrement())
+  first_name      String     @db.Char(50)
+  last_name1      String     @db.Char(30)
+  last_name2      String     @db.Char(30)
+  daily_salary    Int        @default(0)
+  admision_date   DateTime
+  status          Boolean
+  // RELATION (1:1) Position
+  position        Position?
+  // RELATION (1:N) Benefits
+  benefits        Benefits[]
+  // CONTROL FIELDS
+  created_date    DateTime   @default(now())
+  created_user_id Int?
+  updated_date    DateTime   @default(now())
+  updated_user_id Int?
+}
+
+model Position {
+  position_id     Int      @id @default(autoincrement())
+  position_name   String   @db.Char(40)
+  daily_salary    Int
+  // CONTROL FIELDS
+  created_date    DateTime @default(now())
+  created_user_id Int?
+  updated_date    DateTime @default(now())
+  updated_user_id Int?
+  // EMPLOYEE RELATION
+  employee        Employee @relation(fields: [employee_id], references: [employee_id])
+  employee_id     Int      @unique
+}
+
+model Benefits {
+  benefits_id     Int          @id @default(autoincrement())
+  type            BenefitsType @default(NONE)
+  quantity        Int
+  // EMPLOYEE RELATION
+  employee        Employee     @relation(fields: [employee_id], references: [employee_id])
+  employee_id     Int          @unique
+  // CONTROL FIELDS
+  created_date    DateTime     @default(now())
+  created_user_id Int?
+  updated_date    DateTime     @default(now())
+  updated_user_id Int?
+}
+
+enum BenefitsType {
+  CHRISTMAS_BONUS
+  PANTRY_BONUSES
+  LIFE_INSURANCE
+  NONE
+}
