@@ -1,6 +1,5 @@
 import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-
 import { compareCrypt } from '../../utils/encrypter';
 import { handlerServicesErrors } from '../../utils/HandlerErrors';
 import { IAuthLoginDto } from '../interfaces';
@@ -26,7 +25,7 @@ async function loginService(props: IAuthLoginDto, res: Response) {
 			return user;
 		}
 	} catch (err) {
-		handlerServicesErrors(err, res);
+		return handlerServicesErrors(err, res);
 	}
 }
 

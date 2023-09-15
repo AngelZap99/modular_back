@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-
 import { loginService } from '../services';
-import { IAuthLoginDto } from '../interfaces';
 import { createToken } from '../../utils/authToken';
+import { IAuthLoginDto } from '../interfaces';
+import { isUser } from '../../usersModule/interfaces';
 
 async function loginController(req: Request, res: Response) {
 	const { email, password } = req.query;
@@ -14,7 +14,9 @@ async function loginController(req: Request, res: Response) {
 
 	const user = await loginService(data, res);
 
-	if (user) {
+	if (!user) {
+		res.status(401).send('Invalid or incorrect credentials');
+	} else if (isUser(user)) {
 		const { email, role, user_id, nickname } = user;
 		const token = createToken({ email, role, user_id });
 
@@ -28,7 +30,7 @@ async function loginController(req: Request, res: Response) {
 			}
 		});
 	} else {
-		res.status(401).send('Invalid or incorrect credentials');
+		return user;
 	}
 }
 

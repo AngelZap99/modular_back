@@ -35,7 +35,7 @@ function handlerPrismaError(e: any) {
 function handlerServicesErrors(err: any, res: Response) {
 	const errPrisma = handlerPrismaError(err);
 	errPrisma ? console.error(errPrisma) : console.error(err);
-	errPrisma
+	return errPrisma
 		? res.status(errPrisma.status).json(errPrisma)
 		: res.status(500).json('Internal server error');
 }
