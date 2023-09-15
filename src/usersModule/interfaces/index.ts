@@ -32,5 +32,11 @@ export interface IUser {
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export function isUser(object: any): object is IUser {
-	return object;
+	return (<IUser>object).user_id !== undefined;
+}
+
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
+export function areUsers(object: any): object is IUser[] {
+	return (<IUser[]>object)[0].user_id !== undefined
+	;
 }

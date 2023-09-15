@@ -24,7 +24,7 @@ async function getAllUsersService(
 		await prisma.$disconnect();
 		return user;
 	} catch (err) {
-		handlerServicesErrors(err, res);
+		return handlerServicesErrors(err, res);
 	}
 }
 

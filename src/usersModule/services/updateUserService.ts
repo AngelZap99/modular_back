@@ -35,7 +35,7 @@ async function updatedUserService(
 		});
 		return updatedUser;
 	} catch (err) {
-		handlerServicesErrors(err, res);
+		return handlerServicesErrors(err, res);
 	}
 }
 
