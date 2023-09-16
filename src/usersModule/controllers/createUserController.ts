@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
 
 import { createUserService } from '../services/';
-import logger from '../../utils/logger';
 
-import { ICreateUserDto, IUser } from '../interfaces';
+import { ICreateUserDto, isUser } from '../interfaces';
 import { ITokenProps } from '../../utils/authToken';
 
 async function createUserController(req: Request, res: Response) {
@@ -11,16 +10,11 @@ async function createUserController(req: Request, res: Response) {
 
 	const data: ICreateUserDto = req.body;
 
-	const createdUser: IUser | undefined = await createUserService(
-		data,
-		dataToken.user_id,
-		res
-	);
+	const createdUser = await createUserService(data, dataToken.user_id, res);
 
-	if (createdUser) {
+	if (isUser(createdUser)) {
 		const { email, nickname } = createdUser;
-		logger.info('An user has been created');
-		res.status(200).json({
+		return res.status(200).json({
 			createdUser: {
 				...createdUser,
 				password: undefined,
@@ -28,6 +22,8 @@ async function createUserController(req: Request, res: Response) {
 				nickname: nickname.trim()
 			}
 		});
+	} else {
+		return createdUser;
 	}
 }
 

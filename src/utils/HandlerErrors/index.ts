@@ -34,8 +34,8 @@ function handlerPrismaError(e: any) {
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 function handlerServicesErrors(err: any, res: Response) {
 	const errPrisma = handlerPrismaError(err);
-	errPrisma ? console.error(errPrisma) : console.error(err);
-	errPrisma
+	errPrisma ? console.error('PRISMA ERROR: \n', errPrisma) : console.error(err);
+	return errPrisma
 		? res.status(errPrisma.status).json(errPrisma)
 		: res.status(500).json('Internal server error');
 }

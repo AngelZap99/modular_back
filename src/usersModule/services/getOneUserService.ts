@@ -13,8 +13,6 @@ async function getOneUserService(filter: string, res: Response) {
 			? { email: filter }
 			: { user_id: Number(filter) };
 
-		console.log(condition);
-
 		const user: IUser | null = await prisma.users
 			.findUnique({ where: condition })
 			.then((res) => res)
@@ -25,7 +23,7 @@ async function getOneUserService(filter: string, res: Response) {
 		await prisma.$disconnect();
 		return user;
 	} catch (err) {
-		handlerServicesErrors(err, res);
+		return handlerServicesErrors(err, res);
 	}
 }
 
