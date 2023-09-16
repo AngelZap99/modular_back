@@ -23,7 +23,7 @@ function handlerPrismaError(e: any) {
 				return {
 					message: 'An error has occurred in a field',
 					status: 400,
-					data: e
+					data: e.meta
 				};
 			}
 		}
