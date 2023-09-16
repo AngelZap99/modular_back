@@ -19,12 +19,10 @@ async function createEmployeeController(req: Request, res: Response) {
 	if (isEmployee(createdEmployee)) {
 		const { first_name, last_name1, last_name2 } = createdEmployee;
 		return res.status(200).json({
-			createdUser: {
-				...createdEmployee,
-				first_name: first_name.trim(),
-				last_name1: last_name1.trim(),
-				last_name2: last_name2.trim()
-			}
+			...createdEmployee,
+			first_name: first_name.trim(),
+			last_name1: last_name1.trim(),
+			last_name2: last_name2.trim()
 		});
 	} else {
 		return createdEmployee;
