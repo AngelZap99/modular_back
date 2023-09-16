@@ -36,5 +36,7 @@ export function isEmployee(object: any): object is IEmployee {
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export function areEmployees(object: any): object is IEmployee[] {
-	return (<IEmployee[]>object)[0].employee_id !== undefined;
+	return (<IEmployee[]>object).length
+		? (<IEmployee[]>object)[0].employee_id !== undefined
+		: object;
 }

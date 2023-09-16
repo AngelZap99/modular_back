@@ -37,6 +37,7 @@ export function isUser(object: any): object is IUser {
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export function areUsers(object: any): object is IUser[] {
-	return (<IUser[]>object)[0].user_id !== undefined
-	;
+	return (<IUser[]>object).length
+		? (<IUser[]>object)[0].user_id !== undefined
+		: object;
 }
