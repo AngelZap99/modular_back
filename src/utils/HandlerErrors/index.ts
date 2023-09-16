@@ -27,6 +27,12 @@ function handlerPrismaError(e: any) {
 				};
 			}
 		}
+	} else if (e instanceof Prisma.PrismaClientValidationError) {
+		return {
+			Message:
+				'Unknown argument when executing the petition, check the information sent.',
+			status: 400
+		};
 	}
 	return null;
 }
