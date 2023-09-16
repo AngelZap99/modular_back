@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 
 import { createUserService } from '../services/';
-import logger from '../../utils/logger';
 
 import { ICreateUserDto, isUser } from '../interfaces';
 import { ITokenProps } from '../../utils/authToken';
@@ -15,8 +14,6 @@ async function createUserController(req: Request, res: Response) {
 
 	if (isUser(createdUser)) {
 		const { email, nickname } = createdUser;
-
-		logger.info('An user has been created');
 		return res.status(200).json({
 			createdUser: {
 				...createdUser,

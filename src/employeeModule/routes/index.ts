@@ -18,7 +18,10 @@ employeeRouter.get('/:filter', () => {});
 // GET EMPLOYEES
 employeeRouter.get('/', () => {});
 
-// DELETE EMPLOYEE
+// UPDATE EMPLOYEE
 employeeRouter.patch('/update/:employee_id', () => {});
+
+// DELETE EMPLOYEE
+employeeRouter.delete('/delete/:employee_id', () => {});
 
 export { employeeRouter };
