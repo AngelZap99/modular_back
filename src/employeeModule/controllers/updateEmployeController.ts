@@ -2,12 +2,13 @@ import { Request, Response } from 'express';
 
 import { updatedEmployeeService } from '../services/';
 
-import { isEmployee } from '../interfaces';
+import { IUpdateEmployeeDto, isEmployee } from '../interfaces';
 import { ITokenProps } from '../../utils/authToken';
 
 async function updateEmployeeController(req: Request, res: Response) {
 	const { employee_id } = req.params;
-	const { dataToken, ...data }: { dataToken: ITokenProps } = req.body;
+	const { dataToken }: { dataToken: ITokenProps } = req.body;
+	const data:IUpdateEmployeeDto = req.body;
 
 	const updatedEmployee = await updatedEmployeeService(
 		data,

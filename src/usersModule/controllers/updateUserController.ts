@@ -3,12 +3,13 @@ import { Request, Response } from 'express';
 import { updatedUserService } from '../services/';
 import logger from '../../utils/logger';
 
-import { isUser } from '../interfaces';
+import { IUpdateUserDto, isUser } from '../interfaces';
 import { ITokenProps } from '../../utils/authToken';
 
 async function updateUserController(req: Request, res: Response) {
 	const { user_id } = req.params;
-	const { dataToken, ...data }: { dataToken: ITokenProps } = req.body;
+	const { dataToken }: { dataToken: ITokenProps } = req.body;
+	const data: IUpdateUserDto = req.body;
 
 	const updatedUser = await updatedUserService(
 		data,

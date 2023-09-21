@@ -7,7 +7,6 @@ import { ITokenProps } from '../../utils/authToken';
 
 async function createEmployeeController(req: Request, res: Response) {
 	const { dataToken }: { dataToken: ITokenProps } = req.body;
-
 	const data: ICreateEmployeeDto = req.body;
 
 	const createdEmployee = await createEmployeeService(
