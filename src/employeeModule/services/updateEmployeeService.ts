@@ -20,7 +20,7 @@ async function updatedEmployeeService(
 	const date = getActualDate();
 
 	try {
-		const updatedUser: IEmployee = await prisma.employee.update({
+		const updatedEmployee: IEmployee = await prisma.employee.update({
 			where: {
 				employee_id: idToUpdate
 			},
@@ -30,7 +30,7 @@ async function updatedEmployeeService(
 				updated_user_id: tokenData.user_id
 			}
 		});
-		return updatedUser;
+		return updatedEmployee;
 	} catch (err) {
 		return handlerServicesErrors(err, res);
 	}

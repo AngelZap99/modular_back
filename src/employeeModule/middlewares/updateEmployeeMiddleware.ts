@@ -7,7 +7,7 @@ import {
 
 // prettier-ignore
 const updateEmployeeMiddleware = [
-	// user_id
+	// employee_id
 	param('employee_id')
 		.exists().withMessage(errMsg.notExists).bail()
 		.notEmpty().withMessage(errMsg.notEmpty).bail()

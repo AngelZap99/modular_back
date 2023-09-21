@@ -7,7 +7,7 @@ import {
 
 // prettier-ignore
 const updatePositionMiddleware = [
-	// user_id
+	// position_id
 	param('position_id')
 		.exists().withMessage(errMsg.notExists).bail()
 		.notEmpty().withMessage(errMsg.notEmpty).bail(),

@@ -24,7 +24,7 @@ positionRouter.post(
 
 // UPDATE POSITION
 positionRouter.patch(
-	'/update/:employee_id',
+	'/update/:position_id',
 	updatePositionMiddleware,
 	updatePositionController
 );
