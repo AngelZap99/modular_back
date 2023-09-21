@@ -3,8 +3,8 @@ import { routesConfig } from '../../utils/config';
 
 //VALIDATIONS
 import {
-	createEmployeeMiddleware,
-	updateEmployeeMiddleware
+	createPositionMiddleware,
+	updatePositionMiddleware
 } from '../middlewares';
 
 // CONTROLLERS
@@ -18,14 +18,14 @@ const positionRouter = Router(routesConfig);
 // CREATE POSITION
 positionRouter.post(
 	'/create',
-	createEmployeeMiddleware,
+	createPositionMiddleware,
 	createPositionController
 );
 
 // UPDATE POSITION
 positionRouter.patch(
 	'/update/:employee_id',
-	updateEmployeeMiddleware,
+	updatePositionMiddleware,
 	updatePositionController
 );
 
