@@ -46,7 +46,7 @@ model Employee {
   admision_date   DateTime
   status          Boolean
   // RELATION (1:1) Position
-  position        Position?
+  position        Position[]
   // RELATION (1:N) Benefits
   benefits        Benefits[]
   // CONTROL FIELDS
@@ -58,8 +58,9 @@ model Employee {
 
 model Position {
   position_id     Int      @id @default(autoincrement())
-  position_name   String   @db.Char(40)
+  name            String   @db.Char(40)
   daily_salary    Int
+  status          Boolean
   // CONTROL FIELDS
   created_date    DateTime @default(now())
   created_user_id Int?
