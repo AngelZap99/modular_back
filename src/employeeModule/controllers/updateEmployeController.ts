@@ -5,7 +5,7 @@ import { updatedEmployeeService } from '../services/';
 import { isEmployee } from '../interfaces';
 import { ITokenProps } from '../../utils/authToken';
 
-async function updateUserController(req: Request, res: Response) {
+async function updateEmployeeController(req: Request, res: Response) {
 	const { employee_id } = req.params;
 	const { dataToken, ...data }: { dataToken: ITokenProps } = req.body;
 
@@ -29,4 +29,4 @@ async function updateUserController(req: Request, res: Response) {
 	}
 }
 
-export { updateUserController };
+export { updateEmployeeController };

@@ -14,7 +14,7 @@ import {
 	createEmployeeController,
 	deleteEmployeeController,
 	getAllEmployeesController,
-	updateUserController
+	updateEmployeeController
 } from '../controllers';
 
 const employeeRouter = Router(routesConfig);
@@ -36,7 +36,7 @@ employeeRouter.get('/', getAllEmployeeMiddleware, getAllEmployeesController);
 employeeRouter.patch(
 	'/update/:employee_id',
 	updateEmployeeMiddleware,
-	updateUserController
+	updateEmployeeController
 );
 
 // DELETE EMPLOYEE
