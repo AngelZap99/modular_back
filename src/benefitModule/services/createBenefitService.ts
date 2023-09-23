@@ -14,11 +14,14 @@ async function createBenefitService(
 	res: Response
 ) {
 	try {
+		const { employee_id, quantity, type } = props;
 		const date = getActualDate();
 
 		const createdBenefit: IBenefit = await prisma.benefits.create({
 			data: {
-				...props,
+				employee_id,
+				quantity,
+				type,
 				created_date: date,
 				created_user_id: creatorId,
 				updated_date: date,

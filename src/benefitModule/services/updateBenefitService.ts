@@ -17,6 +17,7 @@ async function updatedBenefitService(
 	tokenData: ITokenProps,
 	res: Response
 ) {
+	const { quantity, type } = props;
 	const date = getActualDate();
 
 	try {
@@ -25,7 +26,8 @@ async function updatedBenefitService(
 				benefits_id: idToUpdate
 			},
 			data: {
-				...props,
+				quantity,
+				type,
 				updated_date: date,
 				updated_user_id: tokenData.user_id
 			}

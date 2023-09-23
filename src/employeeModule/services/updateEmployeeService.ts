@@ -17,6 +17,14 @@ async function updatedEmployeeService(
 	tokenData: ITokenProps,
 	res: Response
 ) {
+	const {
+		admision_date,
+		daily_salary,
+		first_name,
+		last_name1,
+		last_name2,
+		status
+	} = props;
 	const date = getActualDate();
 
 	try {
@@ -25,7 +33,12 @@ async function updatedEmployeeService(
 				employee_id: idToUpdate
 			},
 			data: {
-				...props,
+				admision_date,
+				daily_salary,
+				first_name,
+				last_name1,
+				last_name2,
+				status,
 				updated_date: date,
 				updated_user_id: tokenData.user_id
 			}

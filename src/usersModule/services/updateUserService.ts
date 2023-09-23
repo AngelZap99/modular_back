@@ -18,6 +18,7 @@ async function updatedUserService(
 	tokenData: ITokenProps,
 	res: Response
 ) {
+	const { email, nickname, password, role } = props;
 	const date = getActualDate();
 
 	try {
@@ -26,9 +27,10 @@ async function updatedUserService(
 				user_id: idToUpdate
 			},
 			data: {
-				...props,
-				email: props.email?.toLowerCase(),
-				password: props.password && (await createCrypt(props.password)),
+				email: email?.toLowerCase(),
+				nickname,
+				password: password && (await createCrypt(password)),
+				role,
 				updated_date: date,
 				updated_user_id: tokenData.user_id
 			}
