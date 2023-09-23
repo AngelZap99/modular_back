@@ -17,13 +17,8 @@ async function createEmployeeService(
 		//
 		// delete props.dataToken;
 		const date = getActualDate();
-		const { 
-			admision_date, 
-			daily_salary, 
-			first_name, 
-			last_name1, 
-			last_name2 
-		} = props;
+		const { admision_date, daily_salary, first_name, last_name1, last_name2 } =
+			props;
 
 		const createdEmployee: IEmployee = await prisma.employee.create({
 			data: {

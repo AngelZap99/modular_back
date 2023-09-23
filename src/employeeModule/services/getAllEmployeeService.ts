@@ -15,7 +15,11 @@ async function getAllEmployeesService(
 	try {
 		const employee: IEmployee[] | null = await prisma.employee.findMany({
 			skip,
-			take
+			take,
+			include: {
+				benefits: true,
+				position: true
+			}
 		});
 
 		await prisma.$disconnect();
