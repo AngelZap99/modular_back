@@ -8,7 +8,7 @@ import {
 // prettier-ignore
 const createEmployeeMiddleware = [
 	// First name
-	body('firstName')
+	body('first_name')
 		.exists().withMessage(errMsg.notExists).bail()
 		.notEmpty().withMessage(errMsg.notEmpty).bail()
 		.isString().withMessage(errMsg.isString).bail()

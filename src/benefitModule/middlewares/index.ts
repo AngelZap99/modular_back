@@ -1,11 +1,11 @@
 import { createBenefitMiddleware } from './createBenefitMiddleware';
 import { deleteBenefitMiddleware } from './deleteBenefitMiddleware';
-import { getAllBenefitMiddleware } from './getAllBenefitsMiddleware';
+import { getBenefitsMiddleware } from './getBenefitsMiddleware';
 import { updateBenefitMiddleware } from './updateBenefitMiddleware';
 
 export {
 	createBenefitMiddleware,
 	deleteBenefitMiddleware,
-	getAllBenefitMiddleware,
+	getBenefitsMiddleware,
 	updateBenefitMiddleware
 };

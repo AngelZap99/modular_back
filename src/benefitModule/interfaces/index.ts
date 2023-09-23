@@ -23,6 +23,13 @@ export interface IBenefit {
 	updated_user_id: number | null;
 }
 
+export const BenefitsTypeAr = [
+	'CHRISTMAS_BONUS',
+	'PANTRY_BONUSES',
+	'LIFE_INSURANCE',
+	'NONE'
+];
+
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export function isBenefit(object: any): object is IBenefit {
 	return (<IBenefit>object).benefits_id !== undefined;

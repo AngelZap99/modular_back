@@ -28,6 +28,7 @@ function handlerPrismaError(e: any) {
 			}
 		}
 	} else if (e instanceof Prisma.PrismaClientValidationError) {
+		console.log(e);
 		return {
 			Message:
 				'Unknown argument when executing the petition, check the information sent.',

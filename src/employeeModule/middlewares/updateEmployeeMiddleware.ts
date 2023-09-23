@@ -13,7 +13,7 @@ const updateEmployeeMiddleware = [
 		.notEmpty().withMessage(errMsg.notEmpty).bail()
 		.isDecimal().withMessage(errMsg.isNumber).bail(),
 	// First name
-	body('firstName').optional()
+	body('first_name').optional()
 		.exists().withMessage(errMsg.notExists).bail()
 		.notEmpty().withMessage(errMsg.notEmpty).bail()
 		.isString().withMessage(errMsg.isString).bail()

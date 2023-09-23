@@ -6,9 +6,9 @@ import {
 } from '../../utils/middlewares';
 
 // prettier-ignore
-const deleteEmployeeMiddleware = [
-	// employee_id
-	param('employee_id')
+const deleteBenefitMiddleware = [
+	// benefit_id
+	param('benefit_id')
 		.exists().withMessage(errMsg.notExists).bail()
 		.notEmpty().withMessage(errMsg.notEmpty).bail()
 		.isDecimal().withMessage(errMsg.isNumber).bail(),
@@ -19,4 +19,4 @@ const deleteEmployeeMiddleware = [
 	validateValidation
 ];
 
-export { deleteEmployeeMiddleware };
+export { deleteBenefitMiddleware };

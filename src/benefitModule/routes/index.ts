@@ -5,7 +5,7 @@ import { routesConfig } from '../../utils/config';
 import {
 	createBenefitMiddleware,
 	deleteBenefitMiddleware,
-	getAllBenefitMiddleware,
+	getBenefitsMiddleware,
 	updateBenefitMiddleware
 } from '../middlewares';
 
@@ -23,7 +23,7 @@ const benefitRouter = Router(routesConfig);
 benefitRouter.post('/create', createBenefitMiddleware, createBenefitController);
 
 // GET BENEFITS
-benefitRouter.get('/:benefit_id', getAllBenefitMiddleware, getBenefitsController);
+benefitRouter.get('/:benefit_id', getBenefitsMiddleware, getBenefitsController);
 
 // UPDATE BENEFIT
 benefitRouter.patch(
