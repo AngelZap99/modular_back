@@ -59,7 +59,6 @@ model Employee {
 model Position {
   position_id     Int      @id @default(autoincrement())
   name            String   @db.Char(40)
-  daily_salary    Int
   status          Boolean
   // CONTROL FIELDS
   created_date    DateTime @default(now())

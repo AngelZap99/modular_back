@@ -1,20 +1,17 @@
 export interface ICreatePositionDto {
 	name: string;
-	daily_salary: number;
 	status: boolean;
 	employee_id: number;
 }
 
 export interface IUpdatePositionDto {
 	name: string;
-	daily_salary: number;
 	status: boolean;
 }
 
 export interface IPosition {
 	position_id: number;
 	name: string;
-	daily_salary: number;
 	status: boolean;
 
 	employee_id: number;

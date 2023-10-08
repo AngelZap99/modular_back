@@ -14,12 +14,11 @@ async function createPositionService(
 	res: Response
 ) {
 	try {
-		const { daily_salary, employee_id, name, status } = props;
+		const { employee_id, name, status } = props;
 		const date = getActualDate();
 
 		const createdPosition: IPosition = await prisma.position.create({
 			data: {
-				daily_salary,
 				employee_id,
 				name: name.trim(),
 				status,

@@ -17,7 +17,7 @@ async function updatedPositionService(
 	tokenData: ITokenProps,
 	res: Response
 ) {
-	const { daily_salary, name, status } = props;
+	const { name, status } = props;
 	const date = getActualDate();
 
 	try {
@@ -26,7 +26,6 @@ async function updatedPositionService(
 				position_id: idToUpdate
 			},
 			data: {
-				daily_salary,
 				name,
 				status,
 				updated_date: date,
